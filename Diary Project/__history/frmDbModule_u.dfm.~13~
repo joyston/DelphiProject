@@ -1,0 +1,47 @@
+object dbmodule: Tdbmodule
+  OldCreateOrder = False
+  Height = 276
+  Width = 495
+  object mainConnection: TFDConnection
+    ConnectionName = 'StudentConnection'
+    Params.Strings = (
+      'DriverID=MySQL'
+      'Database=diarydb'
+      'Password=Sql@123pwd'
+      'Server=127.0.0.1'
+      'User_Name=root')
+    Connected = True
+    LoginPrompt = False
+    Left = 56
+    Top = 104
+  end
+  object qryUsers: TFDQuery
+    Connection = mainConnection
+    SQL.Strings = (
+      'Select * From users;')
+    Left = 168
+    Top = 56
+  end
+  object dsUsers: TDataSource
+    DataSet = qryUsers
+    Left = 232
+    Top = 56
+  end
+  object qryDiary: TFDQuery
+    Connection = mainConnection
+    SQL.Strings = (
+      'Select * from diary where user_fkid= :ID;')
+    Left = 160
+    Top = 160
+    ParamData = <
+      item
+        Name = 'ID'
+        ParamType = ptInput
+      end>
+  end
+  object dsDiary: TDataSource
+    DataSet = qryDiary
+    Left = 232
+    Top = 160
+  end
+end

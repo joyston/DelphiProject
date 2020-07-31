@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{AE717850-1844-43EC-851E-F294189CCBDD}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Login_p.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\Student Database\StudentDatabase_p.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\..\RADStudio10.3Demos-master\Object Pascal\Database\FireDAC\Samples\Getting Started\MySQL\GettingStarted.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Login_p">
+        <MSBuild Projects="Login_p.dproj"/>
+    </Target>
+    <Target Name="Login_p:Clean">
+        <MSBuild Projects="Login_p.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Login_p:Make">
+        <MSBuild Projects="Login_p.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="StudentDatabase_p">
+        <MSBuild Projects="..\Student Database\StudentDatabase_p.dproj"/>
+    </Target>
+    <Target Name="StudentDatabase_p:Clean">
+        <MSBuild Projects="..\Student Database\StudentDatabase_p.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="StudentDatabase_p:Make">
+        <MSBuild Projects="..\Student Database\StudentDatabase_p.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="GettingStarted">
+        <MSBuild Projects="..\..\..\RADStudio10.3Demos-master\Object Pascal\Database\FireDAC\Samples\Getting Started\MySQL\GettingStarted.dproj"/>
+    </Target>
+    <Target Name="GettingStarted:Clean">
+        <MSBuild Projects="..\..\..\RADStudio10.3Demos-master\Object Pascal\Database\FireDAC\Samples\Getting Started\MySQL\GettingStarted.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="GettingStarted:Make">
+        <MSBuild Projects="..\..\..\RADStudio10.3Demos-master\Object Pascal\Database\FireDAC\Samples\Getting Started\MySQL\GettingStarted.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Login_p;StudentDatabase_p;GettingStarted"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Login_p:Clean;StudentDatabase_p:Clean;GettingStarted:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Login_p:Make;StudentDatabase_p:Make;GettingStarted:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
