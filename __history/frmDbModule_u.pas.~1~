@@ -1,0 +1,25 @@
+unit frmDbModule_u;
+
+interface
+
+uses
+  System.SysUtils, System.Classes;
+
+type
+  Tdbmodule = class(TDataModule)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  dbmodule: Tdbmodule;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.
