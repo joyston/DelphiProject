@@ -1,0 +1,76 @@
+object frmLogIn: TfrmLogIn
+  Left = 0
+  Top = 0
+  Align = alCustom
+  Caption = 'Log In Page'
+  ClientHeight = 201
+  ClientWidth = 447
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  WindowState = wsMaximized
+  PixelsPerInch = 96
+  TextHeight = 13
+  object lblUsername: TLabel
+    Left = 0
+    Top = 0
+    Width = 447
+    Height = 201
+    Align = alClient
+    Caption = 'USERNAME'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Impact'
+    Font.Style = []
+    ParentFont = False
+    ExplicitLeft = 8
+    ExplicitTop = 24
+  end
+  object lblPassword: TLabel
+    Left = 0
+    Top = 0
+    Width = 0
+    Height = 447
+    Caption = 'PASSWORD'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Impact'
+    Font.Style = []
+    ParentFont = False
+  end
+  object edtUsername: TEdit
+    Left = 0
+    Top = 0
+    Width = 0
+    Height = 447
+    TabOrder = 0
+  end
+  object edtPassword: TEdit
+    Left = 0
+    Top = 0
+    Width = 0
+    Height = 447
+    TabOrder = 1
+  end
+  object btnLogin: TButton
+    Left = 0
+    Top = 0
+    Width = 0
+    Height = 447
+    Caption = 'LOGIN'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Impact'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 2
+    OnClick = btnLoginClick
+  end
+end

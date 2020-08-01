@@ -1,0 +1,24 @@
+CREATE SCHEMA `diarydb` ;
+
+CREATE TABLE `diarydb`.`user` (
+  `_id` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`_id`));
+
+CREATE TABLE `diarydb`.`diary` (
+  `_id` INT NOT NULL AUTO_INCREMENT,
+  `user_fkid` INT NOT NULL,
+  `logdate` DATE NOT NULL,
+  `log` VARCHAR(500) NOT NULL,
+  `logtime` TIME NOT NULL,
+  `active` BIT NOT NULL,
+  PRIMARY KEY (`_id`),
+  UNIQUE INDEX `_id_UNIQUE` (`_id` ASC) VISIBLE);
+
+ALTER TABLE `diarydb`.`user` 
+ADD UNIQUE INDEX `_id_UNIQUE` (`_id` ASC) VISIBLE;
+;
+
+ALTER TABLE `diarydb`.`user` 
+RENAME TO  `diarydb`.`users` ;

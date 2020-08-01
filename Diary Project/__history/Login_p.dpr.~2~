@@ -1,0 +1,18 @@
+program Login_p;
+
+uses
+  Vcl.Forms,
+  frmLogIn_u in 'frmLogIn_u.pas' {frmLogIn},
+  frmDiary_u in 'frmDiary_u.pas' {Form1},
+  frmDbModule_u in 'frmDbModule_u.pas' {dbmodule: TDataModule};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfrmLogIn, frmLogIn);
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(Tdbmodule, dbmodule);
+  Application.Run;
+end.
