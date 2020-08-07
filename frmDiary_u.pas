@@ -45,6 +45,7 @@ uses frmLogIn_u, frmDbModule_u;
 procedure TfrmDiary.btnAddClick(Sender: TObject);
 var
   logID : integer;
+  //userInstance : TDbFunctions;
 begin
   if not dbmodule.mainConnection.Connected then
     Exit;
@@ -53,21 +54,18 @@ begin
   fmt.ShortDateFormat := 'yyyy-mm-dd';
 
   //Check if Date already present in Db
-  logID := dbmodule.mainConnection.ExecSQLScalar('select _id from diary where' +
-        ' user_fkid=:UId and logdate=:LD and active=1', [frmLogIn.userID, DateToStr(dtLog.Date, fmt)]);
+  logID := frmLogIn.userInstance.GetLogId(frmLogIn.userID, DateToStr(dtLog.Date, fmt));
    if logID <> 0 then
    begin
-     dbmodule.mainConnection.ExecSQL('Update diary set active=0 WHERE _id=:LID' +
-        ' and active=1 and user_fkid=:UId', [logID, frmLogIn.userID]);
+     frmLogIn.userInstance.UpdateDiary(logID, frmLogIn.userID,
+         DateToStr(dtLog.Date, fmt), memLog.Text, edtHour.Text);
    end;
 
 
-  dbmodule.mainConnection.ExecSQL('Insert into diary(user_fkid, logdate, log,'
-          + ' logtime, active) values(:Id, :LD, :Lg, :Lt, :A)',
-          [frmLogIn.userID, DateToStr(dtLog.Date, fmt), memLog.Text,
-          edtHour.Text, 1]);
+  frmLogIn.userInstance.InsertInDiary(frmLogIn.userID, DateToStr(dtLog.Date, fmt)
+        , memLog.Text, edtHour.Text);
 
-  dbmodule.qryDiary.Refresh;
+  //dbmodule.qryDiary.Refresh;
   tabView.Show;
 end;
 
@@ -98,11 +96,7 @@ end;
 
 procedure TfrmDiary.tabDiaryChange(Sender: TObject);
 begin
-  dbmodule.qryDiary.SQL.Text := 'Select * from diary where user_fkid='
-        + IntToStr(frmLogIn.userID) + ' AND active=1;';
-  dbmodule.qryDiary.Open;
-
-  //dbmodule.qryDiary.Refresh;
+    frmLogIn.userInstance.GetUserLogs(frmLogIn.userID);
 end;
 
 end.

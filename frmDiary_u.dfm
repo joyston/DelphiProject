@@ -59,7 +59,7 @@ object frmDiary: TfrmDiary
         Height = 21
         Date = 44039.000000000000000000
         Time = 44039.000000000000000000
-        MaxDate = 44039.999988425920000000
+        MaxDate = 44050.999988425920000000
         TabOrder = 1
       end
       object edtHour: TEdit

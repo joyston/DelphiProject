@@ -22,3 +22,6 @@ ADD UNIQUE INDEX `_id_UNIQUE` (`_id` ASC) VISIBLE;
 
 ALTER TABLE `diarydb`.`user` 
 RENAME TO  `diarydb`.`users` ;
+
+ALTER TABLE `diarydb`.`diary` 
+DROP COLUMN `active`;
