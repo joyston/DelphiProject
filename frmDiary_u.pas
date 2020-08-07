@@ -45,7 +45,6 @@ uses frmLogIn_u, frmDbModule_u;
 procedure TfrmDiary.btnAddClick(Sender: TObject);
 var
   logID : integer;
-  //userInstance : TDbFunctions;
 begin
   if not dbmodule.mainConnection.Connected then
     Exit;
@@ -65,7 +64,7 @@ begin
   frmLogIn.userInstance.InsertInDiary(frmLogIn.userID, DateToStr(dtLog.Date, fmt)
         , memLog.Text, edtHour.Text);
 
-  //dbmodule.qryDiary.Refresh;
+  dbmodule.qryDiary.Refresh;
   tabView.Show;
 end;
 

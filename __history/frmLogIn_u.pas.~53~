@@ -20,7 +20,7 @@ type
     { Public declarations }
     //puserID : ^Integer;
     userID : Integer;
-
+    userInstance : TDbFunctions;
   end;
 
 var
@@ -33,7 +33,8 @@ implementation
 {$R *.dfm}
 
 procedure TfrmLogIn.btnLoginClick(Sender: TObject);
-//var userID : Integer;
+//var DB : Tdbmodule;
+//var userInstance : TDbFunctions;
 begin
   if (edtUsername.Text <> '') AND (edtPassword.Text <> '') then
     begin
@@ -45,11 +46,8 @@ begin
        if not dbmodule.mainConnection.Connected then
         Exit;
 
-       // Get a scalar value from DB
-       userID := Tdbmodule.Create();
-       userID := Tdbmodule.GetUserId(edtUsername.Text, edtPassword.Text);
-       //userID := dbmodule.mainConnection.ExecSQLScalar('select _id from users where' +
-       // ' username=:username and password=:password', [edtUsername.Text, edtPassword.Text]);
+       userInstance := TDbFunctions.Create;
+       userID := userInstance.GetUserId(edtUsername.Text, edtPassword.Text);
 
        if userID <> 0 then
        begin
