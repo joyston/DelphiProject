@@ -36,6 +36,7 @@ procedure TfrmLogIn.btnLoginClick(Sender: TObject);
 //var DB : Tdbmodule;
 //var userInstance : TDbFunctions;
 begin
+  userInstance := TDbFunctions.Create;
   try
     try
       if (edtUsername.Text <> '') AND (edtPassword.Text <> '') then
@@ -45,10 +46,9 @@ begin
          //dbmodule.FDConnection1.Connected := true;
          //dbmodule.FDQuery1.Active := true;
 
-         if not dbmodule.mainConnection.Connected then
+         if not userInstance.ConnectToDb() then
           Exit;
 
-         userInstance := TDbFunctions.Create;
          userID := userInstance.GetUserId(edtUsername.Text, edtPassword.Text);
 
          if userID <> 0 then

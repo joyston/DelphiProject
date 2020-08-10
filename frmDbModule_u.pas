@@ -8,7 +8,7 @@ uses
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.MySQL,
   FireDAC.Phys.MySQLDef, FireDAC.VCLUI.Wait, FireDAC.Stan.Param, FireDAC.DatS,
   FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client;
+  FireDAC.Comp.Client, Vcl.Dialogs, Vcl.Forms;
 
 type
   Tdbmodule = class(TDataModule)
@@ -26,6 +26,7 @@ type
 
   TDbFunctions = class
     public
+      function ConnectToDb() : Boolean;
       function GetUserId(userName, passWord : string) : Integer;
       function GetLogId(userId : Integer; logDate : string) : Integer;
       procedure UpdateDiary(logId, userId : Integer; logDate, log, logTime : string);
@@ -38,11 +39,46 @@ var
 
 implementation
 
-uses frmLogIn_u;
+uses frmLogIn_u, inifiles;
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 {$R *.dfm}
+
+function TDbFunctions.ConnectToDb() : Boolean;
+var appINI : TIniFile;
+begin
+  appINI := TIniFile.Create(ExtractFilePath(Application.ExeName) + 'dbconfig.ini');
+  try
+     try
+        //Read Db info from INF file
+        with  dbmodule.mainConnection do
+        begin
+          Connected := false;
+          Params.Clear;
+          DriverName := appINI.ReadString('DB-INFO', 'DriverID', '');
+          Params.values['Database'] := appINI.ReadString('DB-INFO', 'Database', '');
+          Params.values['Server'] := appINI.ReadString('DB-INFO', 'Server', '');
+          Params.values['User_name'] := appINI.ReadString('DB-INFO', 'User_Name', '');
+          Params.values['Password'] := appINI.ReadString('DB-INFO', 'Password', '');
+          Params.values['Port'] := appINI.ReadString('DB-INFO', 'Port', '');
+          Connected := true;
+        end;
+
+        if not dbmodule.mainConnection.Connected then
+           Result := False
+        else
+          Result := True;
+     Except on E : Exception do
+        begin
+          ShowMessage(E.Message);
+          Result := False;
+        end;
+     end;
+  finally
+    FreeAndNil(appINI);
+  end;
+end;
 
 // Get a scalar value from DB
 function TDbFunctions.GetUserId(userName, passWord : string) : Integer;
