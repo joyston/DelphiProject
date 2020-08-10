@@ -4,21 +4,21 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, frmDiary_u, frmDbModule_u;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, frmDiary_u, frmDbModule_u,
+  Vcl.Mask;
 
 type
   TfrmLogIn = class(TForm)
     edtUsername: TEdit;
-    edtPassword: TEdit;
     btnLogin: TButton;
     lblUsername: TLabel;
     lblPassword: TLabel;
+    edtPassword: TMaskEdit;
     procedure btnLoginClick(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
-    //puserID : ^Integer;
     userID : Integer;
     userInstance : TDbFunctions;
   end;
@@ -26,14 +26,11 @@ type
 var
   frmLogIn: TfrmLogIn;
 
-
 implementation
-//puserID := @userID;
 
 {$R *.dfm}
 
 procedure TfrmLogIn.btnLoginClick(Sender: TObject);
-//var DB : Tdbmodule;
 //var userInstance : TDbFunctions;
 begin
   userInstance := TDbFunctions.Create;
@@ -41,11 +38,7 @@ begin
     try
       if (edtUsername.Text <> '') AND (edtPassword.Text <> '') then
       begin
-         //puserID := @userID;
          //Code to check credentials
-         //dbmodule.FDConnection1.Connected := true;
-         //dbmodule.FDQuery1.Active := true;
-
          if not userInstance.ConnectToDb() then
           Exit;
 
@@ -58,7 +51,6 @@ begin
          else
          begin
           ShowMessage('Please enter valid Username and Password');
-
          end;
       end
       else

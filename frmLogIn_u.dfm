@@ -47,13 +47,6 @@ object frmLogIn: TfrmLogIn
     Height = 21
     TabOrder = 0
   end
-  object edtPassword: TEdit
-    Left = 432
-    Top = 193
-    Width = 193
-    Height = 21
-    TabOrder = 1
-  end
   object btnLogin: TButton
     Left = 194
     Top = 256
@@ -68,5 +61,14 @@ object frmLogIn: TfrmLogIn
     ParentFont = False
     TabOrder = 2
     OnClick = btnLoginClick
+  end
+  object edtPassword: TMaskEdit
+    Left = 432
+    Top = 193
+    Width = 201
+    Height = 21
+    PasswordChar = '*'
+    TabOrder = 1
+    Text = ''
   end
 end
