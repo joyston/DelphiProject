@@ -26,6 +26,7 @@ type
     procedure tabDiaryChange(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure btnLogoutClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -58,11 +59,12 @@ begin
    begin
      frmLogIn.userInstance.UpdateDiary(logID, frmLogIn.userID,
          DateToStr(dtLog.Date, fmt), memLog.Text, edtHour.Text);
-   end;
-
-
-  frmLogIn.userInstance.InsertInDiary(frmLogIn.userID, DateToStr(dtLog.Date, fmt)
+   end
+   else
+   begin
+    frmLogIn.userInstance.InsertInDiary(frmLogIn.userID, DateToStr(dtLog.Date, fmt)
         , memLog.Text, edtHour.Text);
+   end;
 
   dbmodule.qryDiary.Refresh;
   tabView.Show;
@@ -86,11 +88,21 @@ procedure TfrmDiary.Button1Click(Sender: TObject);
 var
   logDate, logText, logTime : string;
 begin
-  dtLog.Date := StrToDate(DBGrid1.Fields[0].AsString);
-  memLog.Text := DBGrid1.Fields[1].AsString;
-  edtHour.Text := DBGrid1.Fields[2].AsString;
+  //dtLog.Date := StrToDate(DBGrid1.Fields[0].AsString);
+  //memLog.Text := DBGrid1.Fields[1].AsString;
+  //edtHour.Text := DBGrid1.Fields[2].AsString;
+  dtLog.Date := dbmodule.qryDiary.FieldByName('logdate').AsDateTime;
+  memLog.Text := dbmodule.qryDiary.FieldByName('log').AsString;
+  edtHour.Text := dbmodule.qryDiary.FieldByName('logtime').AsString;
   //dtLog.Enabled := false;
   tabAddEdit.Show;
+end;
+
+procedure TfrmDiary.FormCreate(Sender: TObject);
+begin
+  tabAddEdit.Show;
+  dtLog.Date := Date;
+  dtLog.MaxDate := Trunc(Date) + 0.99999999999;
 end;
 
 procedure TfrmDiary.tabDiaryChange(Sender: TObject);

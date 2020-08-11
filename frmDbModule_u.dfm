@@ -5,12 +5,9 @@ object dbmodule: Tdbmodule
   object mainConnection: TFDConnection
     ConnectionName = 'StudentConnection'
     Params.Strings = (
-      'DriverID=MySQL'
-      'Database=diarydb'
-      'Password=Sql@123pwd'
-      'Server=127.0.0.1'
-      'User_Name=root')
-    Connected = True
+      'Server='
+      'Port='
+      'DriverID=MySQL')
     LoginPrompt = False
     Left = 56
     Top = 104
@@ -28,7 +25,6 @@ object dbmodule: Tdbmodule
     Top = 56
   end
   object qryDiary: TFDQuery
-    Active = True
     Connection = mainConnection
     SQL.Strings = (
       'Select * from diary;')

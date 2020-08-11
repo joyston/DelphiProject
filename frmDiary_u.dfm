@@ -11,6 +11,7 @@ object frmDiary: TfrmDiary
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object tabDiary: TPageControl
@@ -18,11 +19,13 @@ object frmDiary: TfrmDiary
     Top = 24
     Width = 585
     Height = 401
-    ActivePage = tabAddEdit
+    ActivePage = tabView
     TabOrder = 0
     OnChange = tabDiaryChange
     object tabAddEdit: TTabSheet
       Caption = 'Add/Edit'
+      ExplicitLeft = 0
+      ExplicitTop = 31
       object lblDate: TLabel
         Left = 32
         Top = 64
@@ -49,7 +52,7 @@ object frmDiary: TfrmDiary
         Font.Name = 'Impact'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 0
+        TabOrder = 3
         OnClick = btnAddClick
       end
       object dtLog: TDateTimePicker
@@ -59,8 +62,8 @@ object frmDiary: TfrmDiary
         Height = 21
         Date = 44039.000000000000000000
         Time = 44039.000000000000000000
-        MaxDate = 44050.999988425920000000
-        TabOrder = 1
+        MaxDate = 44054.999988425920000000
+        TabOrder = 0
       end
       object edtHour: TEdit
         Left = 119
@@ -75,7 +78,7 @@ object frmDiary: TfrmDiary
         Top = 96
         Width = 185
         Height = 129
-        TabOrder = 3
+        TabOrder = 1
       end
     end
     object tabView: TTabSheet
@@ -111,12 +114,6 @@ object frmDiary: TfrmDiary
             Expanded = False
             FieldName = 'logtime'
             Title.Caption = 'Time'
-            Visible = True
-          end
-          item
-            Expanded = False
-            Title.Caption = 'Edit'
-            Width = 96
             Visible = True
           end>
       end
