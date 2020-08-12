@@ -14,7 +14,6 @@ type
     tabAddEdit: TTabSheet;
     tabView: TTabSheet;
     btnAdd: TButton;
-    dtLog: TDateTimePicker;
     edtHour: TEdit;
     lblDate: TLabel;
     lblHour: TLabel;
@@ -22,11 +21,13 @@ type
     DBGrid1: TDBGrid;
     Button1: TButton;
     btnLogout: TButton;
+    dtLog: TDateTimePicker;
     procedure btnAddClick(Sender: TObject);
     procedure tabDiaryChange(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure btnLogoutClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -45,7 +46,7 @@ uses frmLogIn_u, frmDbModule_u;
 
 procedure TfrmDiary.btnAddClick(Sender: TObject);
 var
-  logID : integer;
+  frmlogID : integer;
 begin
   if not dbmodule.mainConnection.Connected then
     Exit;
@@ -54,15 +55,16 @@ begin
   fmt.ShortDateFormat := 'yyyy-mm-dd';
 
   //Check if Date already present in Db
-  logID := frmLogIn.userInstance.GetLogId(frmLogIn.userID, DateToStr(dtLog.Date, fmt));
-   if logID <> 0 then
+  //frmlogID := frmLogIn.userInstance.GetLogId(frmLogIn.userInstance.UserId, DateToStr(dtLog.Date, fmt));
+  frmLogIn.userInstance.LogId := frmLogIn.userInstance.GetLogId(frmLogIn.userInstance.UserId, DateToStr(dtLog.Date, fmt));
+   if frmLogIn.userInstance.LogId <> 0 then
    begin
-     frmLogIn.userInstance.UpdateDiary(logID, frmLogIn.userID,
+     frmLogIn.userInstance.UpdateDiary(frmLogIn.userInstance.LogId, frmLogIn.userInstance.UserId,
          DateToStr(dtLog.Date, fmt), memLog.Text, edtHour.Text);
    end
    else
    begin
-    frmLogIn.userInstance.InsertInDiary(frmLogIn.userID, DateToStr(dtLog.Date, fmt)
+    frmLogIn.userInstance.InsertInDiary(frmLogIn.userInstance.UserId, DateToStr(dtLog.Date, fmt)
         , memLog.Text, edtHour.Text);
    end;
 
@@ -80,7 +82,8 @@ begin
 
   frmLogIn.edtUsername.Text := '';
   frmLogIn.edtPassword.Text := '';
-  frmLogIn.userID := 0;
+  //frmLogIn.frmuserID := 0;
+  frmLogIn.userInstance.Free;
   frmDiary.Close;
 end;
 
@@ -101,13 +104,19 @@ end;
 procedure TfrmDiary.FormCreate(Sender: TObject);
 begin
   tabAddEdit.Show;
-  dtLog.Date := Date;
-  dtLog.MaxDate := Trunc(Date) + 0.99999999999;
+  dtLog.Date := now;
+  dtLog.MaxDate := Trunc(Date) + 0.99999999999;;
+end;
+
+procedure TfrmDiary.FormShow(Sender: TObject);
+begin
+  //dtLog.Date := Date;
+  //dtLog.MaxDate := now;
 end;
 
 procedure TfrmDiary.tabDiaryChange(Sender: TObject);
 begin
-    frmLogIn.userInstance.GetUserLogs(frmLogIn.userID);
+    frmLogIn.userInstance.GetUserLogs(frmLogIn.userInstance.UserId);
 end;
 
 end.

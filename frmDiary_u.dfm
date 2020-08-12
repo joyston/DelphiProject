@@ -12,6 +12,7 @@ object frmDiary: TfrmDiary
   Font.Style = []
   OldCreateOrder = False
   OnCreate = FormCreate
+  OnShow = tabDiaryChange
   PixelsPerInch = 96
   TextHeight = 13
   object tabDiary: TPageControl
@@ -19,7 +20,7 @@ object frmDiary: TfrmDiary
     Top = 24
     Width = 585
     Height = 401
-    ActivePage = tabView
+    ActivePage = tabAddEdit
     TabOrder = 0
     OnChange = tabDiaryChange
     object tabAddEdit: TTabSheet
@@ -52,18 +53,8 @@ object frmDiary: TfrmDiary
         Font.Name = 'Impact'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 3
+        TabOrder = 2
         OnClick = btnAddClick
-      end
-      object dtLog: TDateTimePicker
-        Left = 119
-        Top = 56
-        Width = 186
-        Height = 21
-        Date = 44039.000000000000000000
-        Time = 44039.000000000000000000
-        MaxDate = 44054.999988425920000000
-        TabOrder = 0
       end
       object edtHour: TEdit
         Left = 119
@@ -71,14 +62,23 @@ object frmDiary: TfrmDiary
         Width = 185
         Height = 21
         Hint = 'hh:mm'
-        TabOrder = 2
+        TabOrder = 1
       end
       object memLog: TMemo
         Left = 120
         Top = 96
         Width = 185
         Height = 129
-        TabOrder = 1
+        TabOrder = 0
+      end
+      object dtLog: TDateTimePicker
+        Left = 120
+        Top = 56
+        Width = 186
+        Height = 21
+        Date = 44055.000000000000000000
+        Time = 0.713046990742441300
+        TabOrder = 3
       end
     end
     object tabView: TTabSheet

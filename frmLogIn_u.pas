@@ -19,7 +19,7 @@ type
     { Private declarations }
   public
     { Public declarations }
-    userID : Integer;
+    frmuserID : Integer;
     userInstance : TDbFunctions;
   end;
 
@@ -42,9 +42,10 @@ begin
          if not userInstance.ConnectToDb() then
           Exit;
 
-         userID := userInstance.GetUserId(edtUsername.Text, edtPassword.Text);
+         userInstance.UserId := userInstance.GetUserId(edtUsername.Text, edtPassword.Text);
+         //userInstance.SetUserId(userInstance.GetUserId(edtUsername.Text, edtPassword.Text));
 
-         if userID <> 0 then
+         if userInstance.UserId <> 0 then
          begin
            frmDiary.Show;
          end
@@ -67,7 +68,7 @@ begin
       end;
     end;
   finally
-    FreeAndNil(userInstance);
+    userInstance.Free;
   end;
 end;
 

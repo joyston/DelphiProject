@@ -21,10 +21,12 @@ type
     { Private declarations }
   public
     { Public declarations }
-
   end;
 
   TDbFunctions = class
+    private
+      fUserId : Integer;
+      fLogId : Integer;
     public
       function ConnectToDb() : Boolean;
       function GetUserId(userName, passWord : string) : Integer;
@@ -32,6 +34,11 @@ type
       procedure UpdateDiary(logId, userId : Integer; logDate, log, logTime : string);
       procedure InsertInDiary(userId : Integer; logDate, log, logTime : string);
       procedure GetUserLogs(userId : Integer);
+
+      Property UserId : Integer read fUserId write fUserId;
+      Property LogId : Integer read fLogId write fLogId;
+
+      constructor Create;
   end;
 
 var
@@ -45,6 +52,11 @@ implementation
 
 {$R *.dfm}
 
+  constructor TDbFunctions.Create;
+  begin
+    fUserId := 0;
+    fLogId := 0;
+  end;
   function TDbFunctions.ConnectToDb() : Boolean;
   var appINI : TIniFile;
   begin
@@ -107,9 +119,15 @@ implementation
 
   procedure TDbFunctions.GetUserLogs(userId : Integer);
   begin
-    dbmodule.qryDiary.SQL.Text := 'Select * from diary where user_fkid='
+    try
+      dbmodule.qryDiary.SQL.Text := 'Select * from diary where user_fkid='
           + IntToStr(userId) + ';';
-    dbmodule.qryDiary.Open;
+      dbmodule.qryDiary.Open;
+    Except on E : Exception do
+      begin
+        ShowMessage(E.Message);
+      end;
+    end;
   end;
 
 end.
