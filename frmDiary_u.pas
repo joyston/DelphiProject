@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls, Data.DB,
   Vcl.Grids, Vcl.DBGrids, Vcl.DBCGrids, Vcl.Buttons, Vcl.Mask, Vcl.DBCtrls,
-  Vcl.ExtCtrls;
+  Vcl.ExtCtrls, System.UITypes;
 
 type
   TfrmDiary = class(TForm)
@@ -27,7 +27,6 @@ type
     procedure Button1Click(Sender: TObject);
     procedure btnLogoutClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -45,8 +44,7 @@ uses frmLogIn_u, frmDbModule_u;
 {$R *.dfm}
 
 procedure TfrmDiary.btnAddClick(Sender: TObject);
-var
-  frmlogID : integer;
+var  frmlogID : Integer;
 begin
   if not dbmodule.mainConnection.Connected then
     Exit;
@@ -54,12 +52,11 @@ begin
   fmt := TFormatSettings.Create;
   fmt.ShortDateFormat := 'yyyy-mm-dd';
 
-  //Check if Date already present in Db
-  //frmlogID := frmLogIn.userInstance.GetLogId(frmLogIn.userInstance.UserId, DateToStr(dtLog.Date, fmt));
-  frmLogIn.userInstance.LogId := frmLogIn.userInstance.GetLogId(frmLogIn.userInstance.UserId, DateToStr(dtLog.Date, fmt));
-   if frmLogIn.userInstance.LogId <> 0 then
+   //Check if Date already present in Db
+   frmlogID := frmLogIn.userInstance.GetLogId(frmLogIn.userInstance.UserId, DateToStr(dtLog.Date, fmt));
+   if frmlogID <> 0 then
    begin
-     frmLogIn.userInstance.UpdateDiary(frmLogIn.userInstance.LogId, frmLogIn.userInstance.UserId,
+     frmLogIn.userInstance.UpdateDiary(frmlogID, frmLogIn.userInstance.UserId,
          DateToStr(dtLog.Date, fmt), memLog.Text, edtHour.Text);
    end
    else
@@ -68,6 +65,7 @@ begin
         , memLog.Text, edtHour.Text);
    end;
 
+  frmlogID := 0;
   dbmodule.qryDiary.Refresh;
   tabView.Show;
 end;
@@ -80,16 +78,16 @@ begin
   if buttonSelected = mrCancel then
   Exit;
 
+
   frmLogIn.edtUsername.Text := '';
   frmLogIn.edtPassword.Text := '';
   //frmLogIn.frmuserID := 0;
   frmLogIn.userInstance.Free;
+  frmLogIn.Show;
   frmDiary.Close;
 end;
 
 procedure TfrmDiary.Button1Click(Sender: TObject);
-var
-  logDate, logText, logTime : string;
 begin
   //dtLog.Date := StrToDate(DBGrid1.Fields[0].AsString);
   //memLog.Text := DBGrid1.Fields[1].AsString;
@@ -106,12 +104,6 @@ begin
   tabAddEdit.Show;
   dtLog.Date := now;
   dtLog.MaxDate := Trunc(Date) + 0.99999999999;;
-end;
-
-procedure TfrmDiary.FormShow(Sender: TObject);
-begin
-  //dtLog.Date := Date;
-  //dtLog.MaxDate := now;
 end;
 
 procedure TfrmDiary.tabDiaryChange(Sender: TObject);

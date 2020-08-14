@@ -34,7 +34,6 @@ procedure TfrmLogIn.btnLoginClick(Sender: TObject);
 //var userInstance : TDbFunctions;
 begin
   userInstance := TDbFunctions.Create;
-  try
     try
       if (edtUsername.Text <> '') AND (edtPassword.Text <> '') then
       begin
@@ -42,12 +41,13 @@ begin
          if not userInstance.ConnectToDb() then
           Exit;
 
-         userInstance.UserId := userInstance.GetUserId(edtUsername.Text, edtPassword.Text);
-         //userInstance.SetUserId(userInstance.GetUserId(edtUsername.Text, edtPassword.Text));
+         //Set UserId on log in
+         userInstance.SetUserId(edtUsername.Text, edtPassword.Text);
 
          if userInstance.UserId <> 0 then
          begin
            frmDiary.Show;
+           frmLogIn.Hide;
          end
          else
          begin
@@ -67,9 +67,6 @@ begin
         ShowMessage(E.Message);
       end;
     end;
-  finally
-    userInstance.Free;
-  end;
 end;
 
 end.

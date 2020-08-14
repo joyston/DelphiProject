@@ -26,17 +26,15 @@ type
   TDbFunctions = class
     private
       fUserId : Integer;
-      fLogId : Integer;
     public
       function ConnectToDb() : Boolean;
-      function GetUserId(userName, passWord : string) : Integer;
+      procedure SetUserId(userName, passWord : string);
       function GetLogId(userId : Integer; logDate : string) : Integer;
       procedure UpdateDiary(logId, userId : Integer; logDate, log, logTime : string);
       procedure InsertInDiary(userId : Integer; logDate, log, logTime : string);
-      procedure GetUserLogs(userId : Integer);
+      procedure GetUserLogs(userIdvar : Integer);
 
-      Property UserId : Integer read fUserId write fUserId;
-      Property LogId : Integer read fLogId write fLogId;
+      Property UserId : Integer read fUserId;
 
       constructor Create;
   end;
@@ -55,7 +53,6 @@ implementation
   constructor TDbFunctions.Create;
   begin
     fUserId := 0;
-    fLogId := 0;
   end;
   function TDbFunctions.ConnectToDb() : Boolean;
   var appINI : TIniFile;
@@ -93,9 +90,9 @@ implementation
   end;
 
   // Get a scalar value from DB
-  function TDbFunctions.GetUserId(userName, passWord : string) : Integer;
+  procedure TDbFunctions.SetUserId(userName, passWord : string);
   begin
-   Result := dbmodule.mainConnection.ExecSQLScalar('select _id from users where' +
+   fUserId := dbmodule.mainConnection.ExecSQLScalar('select _id from users where' +
           ' username=:username and password=:password', [userName, passWord]);
   end;
 
@@ -117,11 +114,11 @@ implementation
             + ' logtime) values(:Id, :LD, :Lg, :Lt)', [userId, logDate, log, logTime]);
   end;
 
-  procedure TDbFunctions.GetUserLogs(userId : Integer);
+  procedure TDbFunctions.GetUserLogs(userIdvar : Integer);
   begin
     try
       dbmodule.qryDiary.SQL.Text := 'Select * from diary where user_fkid='
-          + IntToStr(userId) + ';';
+          + IntToStr(userIdvar) + ';';
       dbmodule.qryDiary.Open;
     Except on E : Exception do
       begin

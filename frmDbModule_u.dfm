@@ -27,7 +27,7 @@ object dbmodule: Tdbmodule
   object qryDiary: TFDQuery
     Connection = mainConnection
     SQL.Strings = (
-      'Select * from diary;')
+      '')
     Left = 160
     Top = 160
   end
