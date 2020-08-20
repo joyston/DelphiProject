@@ -23,13 +23,13 @@ object frmLogIn: TfrmLogIn
     Height = 496
     Align = alClient
     TabOrder = 0
-    ExplicitLeft = 104
-    ExplicitTop = 96
-    ExplicitWidth = 545
-    ExplicitHeight = 252
+    ExplicitLeft = 48
+    ExplicitTop = 56
+    ExplicitWidth = 657
+    ExplicitHeight = 393
     object lblPassword: TLabel
-      Left = 416
-      Top = 187
+      Left = 368
+      Top = 137
       Width = 60
       Height = 17
       Caption = 'PASSWORD'
@@ -41,8 +41,8 @@ object frmLogIn: TfrmLogIn
       ParentFont = False
     end
     object lblUsername: TLabel
-      Left = 144
-      Top = 187
+      Left = 88
+      Top = 137
       Width = 54
       Height = 17
       Caption = 'USERNAME'
@@ -54,8 +54,8 @@ object frmLogIn: TfrmLogIn
       ParentFont = False
     end
     object btnClose: TButton
-      Left = 144
-      Top = 285
+      Left = 88
+      Top = 237
       Width = 193
       Height = 47
       Caption = 'CLOSE'
@@ -65,12 +65,12 @@ object frmLogIn: TfrmLogIn
       Font.Name = 'Impact'
       Font.Style = []
       ParentFont = False
-      TabOrder = 0
+      TabOrder = 3
       OnClick = btnCloseClick
     end
     object btnLogin: TButton
-      Left = 416
-      Top = 285
+      Left = 368
+      Top = 237
       Width = 201
       Height = 47
       Caption = 'LOGIN'
@@ -80,24 +80,24 @@ object frmLogIn: TfrmLogIn
       Font.Name = 'Impact'
       Font.Style = []
       ParentFont = False
-      TabOrder = 1
+      TabOrder = 2
       OnClick = btnLoginClick
     end
     object edtPassword: TMaskEdit
-      Left = 416
-      Top = 210
+      Left = 368
+      Top = 160
       Width = 201
       Height = 21
       PasswordChar = '*'
-      TabOrder = 2
+      TabOrder = 1
       Text = 'joy'
     end
     object edtUsername: TEdit
-      Left = 144
-      Top = 210
+      Left = 88
+      Top = 160
       Width = 193
       Height = 21
-      TabOrder = 3
+      TabOrder = 0
       Text = 'Joy'
     end
   end

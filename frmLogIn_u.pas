@@ -46,6 +46,7 @@ begin
   begin
     dbmodule.DisposeOf;
   end;
+
   close;
 end;
 
@@ -64,7 +65,10 @@ end;
           if not Assigned(frmDiary) then
           begin
             frmDiary := TfrmDiary.Create(self);
+          end else begin
+//           dbmodule.GetUserLogs(dbmodule.UserId);
           end;
+
           frmDiary.Show;
           frmLogIn.Hide;
         end

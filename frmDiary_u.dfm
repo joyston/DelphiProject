@@ -22,7 +22,7 @@ object frmDiary: TfrmDiary
     Top = 24
     Width = 585
     Height = 401
-    ActivePage = tabAddEdit
+    ActivePage = tabView
     TabOrder = 0
     OnChange = tabDiaryChange
     object tabAddEdit: TTabSheet

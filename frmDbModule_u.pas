@@ -117,7 +117,8 @@ begin
       //dbmodule.qryDiary.Open; }
 
     // Using TFDTable
-    tblDiary.Filter := 'user_fkid =' + IntToStr(_UserId);
+    tblDiary.Filtered := false;
+    tblDiary.Filter := 'user_fkid=' + IntToStr(_UserId);
     tblDiary.Filtered := true;
   Except
     on E: Exception do
@@ -147,6 +148,7 @@ procedure Tdbmodule.SetUserId(const _UserName, _PassWord: string);
 begin
   fUserId := mainConnection.ExecSQLScalar('select _id from users where' +
     ' username=:username and password=:password', [_UserName, _PassWord]);
+    //ShowMessage(IntToStr(fUserId));
 end;
 
 procedure Tdbmodule.UpdateDiary(const _Log: string);
@@ -185,12 +187,12 @@ begin
   lField.DataSet := tblDiary;
   lField.DisplayName := 'LogTime';
   tblDiary.Fields.Add(lField); }
-
   tblDiary.Open;
 end;
 
 procedure Tdbmodule.DataModuleDestroy(Sender: TObject);
 begin
+  fUserId := 0;
   tblUsers.Close;
   tblDiary.Close;
   mainConnection.Connected := false;

@@ -1,0 +1,104 @@
+object frmLogIn: TfrmLogIn
+  Left = 327
+  Top = 148
+  BorderIcons = []
+  Caption = 'Log In'
+  ClientHeight = 496
+  ClientWidth = 750
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesigned
+  WindowState = wsMaximized
+  PixelsPerInch = 96
+  TextHeight = 13
+  object pnlLogin: TPanel
+    Left = 0
+    Top = 0
+    Width = 750
+    Height = 496
+    Align = alClient
+    TabOrder = 0
+    ExplicitLeft = 48
+    ExplicitTop = 56
+    ExplicitWidth = 657
+    ExplicitHeight = 393
+    object lblPassword: TLabel
+      Left = 368
+      Top = 137
+      Width = 60
+      Height = 17
+      Caption = 'PASSWORD'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Impact'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblUsername: TLabel
+      Left = 88
+      Top = 137
+      Width = 54
+      Height = 17
+      Caption = 'USERNAME'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Impact'
+      Font.Style = []
+      ParentFont = False
+    end
+    object btnClose: TButton
+      Left = 88
+      Top = 237
+      Width = 193
+      Height = 47
+      Caption = 'CLOSE'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Impact'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 3
+      OnClick = btnCloseClick
+    end
+    object btnLogin: TButton
+      Left = 368
+      Top = 237
+      Width = 201
+      Height = 47
+      Caption = 'LOGIN'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Impact'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+      OnClick = btnLoginClick
+    end
+    object edtPassword: TMaskEdit
+      Left = 368
+      Top = 160
+      Width = 201
+      Height = 21
+      PasswordChar = '*'
+      TabOrder = 1
+      Text = 'joy'
+    end
+    object edtUsername: TEdit
+      Left = 88
+      Top = 160
+      Width = 193
+      Height = 21
+      TabOrder = 2
+      Text = 'Joy'
+    end
+  end
+end

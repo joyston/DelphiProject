@@ -111,7 +111,7 @@ begin
   frmLogIn.edtPassword.Text := '';
 
   frmLogIn.Show;
-  frmDiary.Close;
+  frmDiary.Hide;
 end;
 
 procedure TfrmDiary.btnRefreshClick(Sender: TObject);
@@ -161,16 +161,16 @@ begin
   btnRefresh.Kind := bkRetry;
 end;
 
+procedure TfrmDiary.tabDiaryChange(Sender: TObject);
+begin
+    dbmodule.GetUserLogs(dbmodule.UserId);
+end;
+
 procedure TfrmDiary.FormCreate(Sender: TObject);
 begin
   tabAddEdit.Show;
   dtLog.MaxDate := Trunc(Date) + 0.99999999999;
   RefreshDiaryForm();
-end;
-
-procedure TfrmDiary.tabDiaryChange(Sender: TObject);
-begin
-    dbmodule.GetUserLogs(dbmodule.UserId);
 end;
 
 end.
