@@ -1,0 +1,44 @@
+object dbmodule: Tdbmodule
+  OldCreateOrder = False
+  OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
+  Height = 331
+  Width = 495
+  object mainConnection: TFDConnection
+    ConnectionName = 'StudentConnection'
+    Params.Strings = (
+      'Server='
+      'Port='
+      'DriverID=MySQL')
+    LoginPrompt = False
+    Left = 56
+    Top = 104
+  end
+  object qryUsers: TFDQuery
+    Connection = mainConnection
+    SQL.Strings = (
+      'Select * From users;')
+    Left = 168
+    Top = 56
+  end
+  object dsUsers: TDataSource
+    DataSet = qryUsers
+    Left = 232
+    Top = 56
+  end
+  object qryDiary: TFDQuery
+    Connection = mainConnection
+    Left = 160
+    Top = 160
+  end
+  object dsDiary: TDataSource
+    DataSet = tblDiary
+    Left = 232
+    Top = 160
+  end
+  object tblDiary: TFDTable
+    Connection = mainConnection
+    Left = 160
+    Top = 224
+  end
+end

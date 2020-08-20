@@ -1,7 +1,8 @@
 object frmLogIn: TfrmLogIn
-  Left = 0
-  Top = 0
-  Caption = 'Log In Page'
+  Left = 327
+  Top = 148
+  BorderIcons = []
+  Caption = 'Log In'
   ClientHeight = 496
   ClientWidth = 750
   Color = clBtnFace
@@ -11,64 +12,93 @@ object frmLogIn: TfrmLogIn
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poDesigned
   WindowState = wsMaximized
   PixelsPerInch = 96
   TextHeight = 13
-  object lblUsername: TLabel
-    Left = 128
-    Top = 170
-    Width = 54
-    Height = 17
-    Caption = 'USERNAME'
-    Font.Charset = ANSI_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'Impact'
-    Font.Style = []
-    ParentFont = False
-  end
-  object lblPassword: TLabel
-    Left = 432
-    Top = 170
-    Width = 60
-    Height = 17
-    Caption = 'PASSWORD'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'Impact'
-    Font.Style = []
-    ParentFont = False
-  end
-  object edtUsername: TEdit
-    Left = 128
-    Top = 193
-    Width = 193
-    Height = 21
+  object pnlLogin: TPanel
+    Left = 0
+    Top = 0
+    Width = 750
+    Height = 496
+    Align = alClient
     TabOrder = 0
-  end
-  object btnLogin: TButton
-    Left = 194
-    Top = 256
-    Width = 359
-    Height = 47
-    Caption = 'LOGIN'
-    Font.Charset = ANSI_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'Impact'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 2
-    OnClick = btnLoginClick
-  end
-  object edtPassword: TMaskEdit
-    Left = 432
-    Top = 193
-    Width = 201
-    Height = 21
-    PasswordChar = '*'
-    TabOrder = 1
-    Text = ''
+    ExplicitLeft = 104
+    ExplicitTop = 96
+    ExplicitWidth = 545
+    ExplicitHeight = 252
+    object lblPassword: TLabel
+      Left = 416
+      Top = 187
+      Width = 60
+      Height = 17
+      Caption = 'PASSWORD'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Impact'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblUsername: TLabel
+      Left = 144
+      Top = 187
+      Width = 54
+      Height = 17
+      Caption = 'USERNAME'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Impact'
+      Font.Style = []
+      ParentFont = False
+    end
+    object btnClose: TButton
+      Left = 144
+      Top = 285
+      Width = 193
+      Height = 47
+      Caption = 'CLOSE'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Impact'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+      OnClick = btnCloseClick
+    end
+    object btnLogin: TButton
+      Left = 416
+      Top = 285
+      Width = 201
+      Height = 47
+      Caption = 'LOGIN'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Impact'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 1
+      OnClick = btnLoginClick
+    end
+    object edtPassword: TMaskEdit
+      Left = 416
+      Top = 210
+      Width = 201
+      Height = 21
+      PasswordChar = '*'
+      TabOrder = 2
+      Text = 'joy'
+    end
+    object edtUsername: TEdit
+      Left = 144
+      Top = 210
+      Width = 193
+      Height = 21
+      TabOrder = 3
+      Text = 'Joy'
+    end
   end
 end

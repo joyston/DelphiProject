@@ -1,6 +1,7 @@
 object frmDiary: TfrmDiary
   Left = 0
   Top = 0
+  BorderIcons = []
   Caption = 'Diary'
   ClientHeight = 477
   ClientWidth = 708
@@ -11,6 +12,7 @@ object frmDiary: TfrmDiary
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  WindowState = wsMaximized
   OnCreate = FormCreate
   OnShow = tabDiaryChange
   PixelsPerInch = 96
@@ -39,11 +41,25 @@ object frmDiary: TfrmDiary
         Height = 13
         Caption = 'Hour'
       end
+      object lblHHMM: TLabel
+        Left = 32
+        Top = 260
+        Width = 34
+        Height = 13
+        Caption = 'HH:MM'
+      end
+      object lblLog: TLabel
+        Left = 32
+        Top = 99
+        Width = 17
+        Height = 13
+        Caption = 'Log'
+      end
       object btnAdd: TButton
-        Left = 119
-        Top = 284
-        Width = 185
-        Height = 25
+        Left = 224
+        Top = 324
+        Width = 82
+        Height = 29
         Caption = 'ADD'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -51,16 +67,8 @@ object frmDiary: TfrmDiary
         Font.Name = 'Impact'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 2
-        OnClick = btnAddClick
-      end
-      object edtHour: TEdit
-        Left = 119
-        Top = 241
-        Width = 185
-        Height = 21
-        Hint = 'hh:mm'
         TabOrder = 1
+        OnClick = btnAddClick
       end
       object memLog: TMemo
         Left = 120
@@ -76,17 +84,54 @@ object frmDiary: TfrmDiary
         Height = 21
         Date = 44055.000000000000000000
         Time = 0.713046990742441300
+        TabOrder = 2
+      end
+      object tplogtime: TTimePicker
+        Left = 120
+        Top = 244
+        Width = 184
+        Height = 29
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Segoe UI'
+        Font.Style = []
         TabOrder = 3
+        Time = 44062.498294293980000000
+        TimeFormat = 'hh:mm'
+      end
+      object btnSave: TButton
+        Left = 120
+        Top = 324
+        Width = 82
+        Height = 29
+        Caption = 'Save'
+        Enabled = False
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Impact'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 4
+        OnClick = btnSaveClick
+      end
+      object btnRefresh: TBitBtn
+        Left = 39
+        Top = 324
+        Width = 75
+        Height = 29
+        Caption = '&Refresh'
+        Kind = bkRetry
+        NumGlyphs = 2
+        TabOrder = 5
+        OnClick = btnRefreshClick
       end
     end
     object tabView: TTabSheet
       Caption = 'View'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
-      object DBGrid1: TDBGrid
+      object grdDiaryLogs: TDBGrid
         Left = 0
         Top = 0
         Width = 581
@@ -119,14 +164,14 @@ object frmDiary: TfrmDiary
             Visible = True
           end>
       end
-      object Button1: TButton
+      object btnEdit: TButton
         Left = 360
         Top = 296
         Width = 75
         Height = 25
         Caption = 'Edit'
         TabOrder = 1
-        OnClick = Button1Click
+        OnClick = btnEditClick
       end
     end
   end

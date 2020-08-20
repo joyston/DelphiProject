@@ -1,11 +1,13 @@
+// Login Page
 unit frmLogIn_u;
 
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, frmDiary_u, frmDbModule_u,
-  Vcl.Mask;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, frmDiary_u, FrmDbModule_u,
+  Vcl.Mask, Vcl.Menus, Vcl.ExtCtrls;
 
 type
   TfrmLogIn = class(TForm)
@@ -14,13 +16,16 @@ type
     lblUsername: TLabel;
     lblPassword: TLabel;
     edtPassword: TMaskEdit;
+    btnClose: TButton;
+    pnlLogin: TPanel;
     procedure btnLoginClick(Sender: TObject);
+    procedure btnCloseClick(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
-    frmuserID : Integer;
-    userInstance : TDbFunctions;
+    frmuserID: Integer;
+    // userInstance : TDbFunctions;
   end;
 
 var
@@ -30,29 +35,43 @@ implementation
 
 {$R *.dfm}
 
-procedure TfrmLogIn.btnLoginClick(Sender: TObject);
-//var userInstance : TDbFunctions;
+procedure TfrmLogIn.btnCloseClick(Sender: TObject);
 begin
-  userInstance := TDbFunctions.Create;
+  if Assigned(frmDiary) then
+  begin
+    frmDiary.DisposeOf;
+  end;
+
+  if Assigned(dbmodule) then
+  begin
+    dbmodule.DisposeOf;
+  end;
+  close;
+end;
+
+  procedure TfrmLogIn.btnLoginClick(Sender: TObject);
+  begin
     try
       if (edtUsername.Text <> '') AND (edtPassword.Text <> '') then
       begin
-         //Code to check credentials
-         if not userInstance.ConnectToDb() then
-          Exit;
+        dbmodule := Tdbmodule.Create(Self);
 
-         //Set UserId on log in
-         userInstance.SetUserId(edtUsername.Text, edtPassword.Text);
+        // Set UserId on log in
+        dbmodule.SetUserId(edtUsername.Text, edtPassword.Text);
 
-         if userInstance.UserId <> 0 then
-         begin
-           frmDiary.Show;
-           frmLogIn.Hide;
-         end
-         else
-         begin
+        if dbmodule.UserId <> 0 then
+        begin
+          if not Assigned(frmDiary) then
+          begin
+            frmDiary := TfrmDiary.Create(self);
+          end;
+          frmDiary.Show;
+          frmLogIn.Hide;
+        end
+        else
+        begin
           ShowMessage('Please enter valid Username and Password');
-         end;
+        end;
       end
       else
       begin
@@ -62,11 +81,11 @@ begin
           ShowMessage('Please enter your Password');
       end;
     Except
-      on E : Exception do
+      on E: Exception do
       begin
         ShowMessage(E.Message);
       end;
     end;
-end;
+  end;
 
 end.
