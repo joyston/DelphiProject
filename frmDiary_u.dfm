@@ -3,8 +3,8 @@ object frmDiary: TfrmDiary
   Top = 0
   BorderIcons = []
   Caption = 'Diary'
-  ClientHeight = 477
-  ClientWidth = 708
+  ClientHeight = 512
+  ClientWidth = 753
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,13 +17,25 @@ object frmDiary: TfrmDiary
   OnShow = tabDiaryChange
   PixelsPerInch = 96
   TextHeight = 13
+  object btnLogout: TButton
+    Left = 610
+    Top = 32
+    Width = 75
+    Height = 25
+    Caption = 'Logout'
+    TabOrder = 0
+    OnClick = btnLogoutClick
+  end
   object tabDiary: TPageControl
-    Left = 32
-    Top = 24
+    Left = 81
+    Top = 63
     Width = 585
     Height = 401
     ActivePage = tabView
-    TabOrder = 0
+    Align = alCustom
+    Anchors = []
+    MultiLine = True
+    TabOrder = 1
     OnChange = tabDiaryChange
     object tabAddEdit: TTabSheet
       Caption = 'Add/Edit'
@@ -121,6 +133,7 @@ object frmDiary: TfrmDiary
         Top = 324
         Width = 75
         Height = 29
+        Cursor = crHandPoint
         Caption = '&Refresh'
         Kind = bkRetry
         NumGlyphs = 2
@@ -136,6 +149,8 @@ object frmDiary: TfrmDiary
         Top = 0
         Width = 581
         Height = 120
+        Align = alCustom
+        Anchors = []
         DataSource = dbmodule.dsDiary
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
         TabOrder = 0
@@ -165,8 +180,8 @@ object frmDiary: TfrmDiary
           end>
       end
       object btnEdit: TButton
-        Left = 360
-        Top = 296
+        Left = 488
+        Top = 336
         Width = 75
         Height = 25
         Caption = 'Edit'
@@ -174,14 +189,5 @@ object frmDiary: TfrmDiary
         OnClick = btnEditClick
       end
     end
-  end
-  object btnLogout: TButton
-    Left = 538
-    Top = 24
-    Width = 75
-    Height = 25
-    Caption = 'Logout'
-    TabOrder = 1
-    OnClick = btnLogoutClick
   end
 end

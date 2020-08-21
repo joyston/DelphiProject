@@ -112,6 +112,9 @@ begin
 
   frmLogIn.Show;
   frmDiary.Hide;
+  tabAddEdit.Show;
+
+  //dbmodule.tblDiary.Close;
 end;
 
 procedure TfrmDiary.btnRefreshClick(Sender: TObject);
@@ -124,6 +127,16 @@ begin
     if buttonSelected = mrCancel then
       Exit
     else
+  end
+  else
+  begin
+    if memLog.Text <> '' then
+    begin
+      buttonSelected := messagedlg('Are you sure you want to abort the changes?',mtCustom, mbOKCancel, 0);
+      if buttonSelected = mrCancel then
+        Exit
+      else
+    end;
   end;
   RefreshDiaryForm();
 end;
@@ -159,6 +172,7 @@ begin
   dtLog.Enabled := true;
   tplogtime.Enabled := true;
   btnRefresh.Kind := bkRetry;
+  btnRefresh.Caption := '&Refresh';
 end;
 
 procedure TfrmDiary.tabDiaryChange(Sender: TObject);

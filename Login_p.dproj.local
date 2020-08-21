@@ -2,8 +2,8 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>1899-12-30 00:00:00.000.036,C:\Users\a\Documents\Embarcadero\Studio\Projects\LogInProject\frmDiary_u.pas=C:\Users\a\Documents\Embarcadero\Studio\Projects\LogInProject\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.988,=C:\Users\a\Documents\Embarcadero\Studio\Projects\LogInProject\Unit1.pas</Transaction>
     <Transaction>1899-12-30 00:00:00.000.785,=C:\Users\a\Documents\Embarcadero\Studio\Projects\LogInProject\Unit1.pas</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.232,=C:\Users\a\Documents\Embarcadero\Studio\Projects\LogInProject\Unit1.pas</Transaction>
     <Transaction>1899-12-30 00:00:00.000.986,C:\Users\a\Documents\Embarcadero\Studio\Projects\LogInProject\frmDiary_u.pas=C:\Users\a\Documents\Embarcadero\Studio\Projects\LogInProject\Unit1.pas</Transaction>
     <Transaction>1899-12-30 00:00:00.000.055,C:\Users\a\Documents\Embarcadero\Studio\Projects\LogInProject\frmDbModule_u.pas=C:\Users\a\Documents\Embarcadero\Studio\Projects\LogInProject\Unit1.pas</Transaction>
     <Transaction>1899-12-30 00:00:00.000.233,=C:\Users\a\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
@@ -12,7 +12,7 @@
     <Transaction>1899-12-30 00:00:00.000.004,C:\Users\a\Documents\Embarcadero\Studio\Projects\LogInProject\frmLogIn_u.pas=C:\Users\a\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
     <Transaction>1899-12-30 00:00:00.000.004,C:\Users\a\Documents\Embarcadero\Studio\Projects\LogInProject\frmLogIn_u.dfm=C:\Users\a\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
     <Transaction>1899-12-30 00:00:00.000.055,C:\Users\a\Documents\Embarcadero\Studio\Projects\LogInProject\frmDbModule_u.dfm=C:\Users\a\Documents\Embarcadero\Studio\Projects\LogInProject\Unit1.dfm</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.988,=C:\Users\a\Documents\Embarcadero\Studio\Projects\LogInProject\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.232,=C:\Users\a\Documents\Embarcadero\Studio\Projects\LogInProject\Unit1.pas</Transaction>
     <Transaction>1899-12-30 00:00:00.000.986,C:\Users\a\Documents\Embarcadero\Studio\Projects\LogInProject\frmDiary_u.dfm=C:\Users\a\Documents\Embarcadero\Studio\Projects\LogInProject\Unit1.dfm</Transaction>
     <Transaction>1899-12-30 00:00:00.000.036,C:\Users\a\Documents\Embarcadero\Studio\Projects\LogInProject\frmDiary_u.dfm=C:\Users\a\Documents\Embarcadero\Studio\Projects\LogInProject\Unit1.dfm</Transaction>
   </Transactions>

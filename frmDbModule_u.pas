@@ -117,8 +117,12 @@ begin
       //dbmodule.qryDiary.Open; }
 
     // Using TFDTable
+    if not tblDiary.Active then
+    begin
+      tblDiary.Open
+    end;
     tblDiary.Filtered := false;
-    tblDiary.Filter := 'user_fkid=' + IntToStr(_UserId);
+    tblDiary.Filter := 'user_fkid =' + IntToStr(_UserId);
     tblDiary.Filtered := true;
   Except
     on E: Exception do

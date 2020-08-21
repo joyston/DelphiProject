@@ -3,8 +3,8 @@ object frmLogIn: TfrmLogIn
   Top = 148
   BorderIcons = []
   Caption = 'Log In'
-  ClientHeight = 496
-  ClientWidth = 750
+  ClientHeight = 459
+  ClientWidth = 714
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,16 +17,18 @@ object frmLogIn: TfrmLogIn
   PixelsPerInch = 96
   TextHeight = 13
   object pnlLogin: TPanel
-    Left = 0
-    Top = 0
-    Width = 750
-    Height = 496
-    Align = alClient
+    Left = 24
+    Top = 32
+    Width = 673
+    Height = 401
+    Margins.Left = 0
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 0
+    Align = alCustom
+    Anchors = []
+    BevelOuter = bvNone
     TabOrder = 0
-    ExplicitLeft = 48
-    ExplicitTop = 56
-    ExplicitWidth = 657
-    ExplicitHeight = 393
     object lblPassword: TLabel
       Left = 368
       Top = 137
@@ -52,21 +54,6 @@ object frmLogIn: TfrmLogIn
       Font.Name = 'Impact'
       Font.Style = []
       ParentFont = False
-    end
-    object btnClose: TButton
-      Left = 88
-      Top = 237
-      Width = 193
-      Height = 47
-      Caption = 'CLOSE'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Impact'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 3
-      OnClick = btnCloseClick
     end
     object btnLogin: TButton
       Left = 368
@@ -95,10 +82,26 @@ object frmLogIn: TfrmLogIn
     object edtUsername: TEdit
       Left = 88
       Top = 160
-      Width = 193
+      Width = 201
       Height = 21
       TabOrder = 0
       Text = 'Joy'
+    end
+    object btnCLose: TBitBtn
+      Left = 88
+      Top = 236
+      Width = 201
+      Height = 48
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Impact'
+      Font.Style = []
+      Kind = bkClose
+      NumGlyphs = 2
+      ParentFont = False
+      TabOrder = 3
+      OnClick = btnCLoseClick
     end
   end
 end

@@ -7,7 +7,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, frmDiary_u, FrmDbModule_u,
-  Vcl.Mask, Vcl.Menus, Vcl.ExtCtrls;
+  Vcl.Mask, Vcl.Menus, Vcl.ExtCtrls, Vcl.Buttons;
 
 type
   TfrmLogIn = class(TForm)
@@ -16,10 +16,10 @@ type
     lblUsername: TLabel;
     lblPassword: TLabel;
     edtPassword: TMaskEdit;
-    btnClose: TButton;
     pnlLogin: TPanel;
+    btnCLose: TBitBtn;
     procedure btnLoginClick(Sender: TObject);
-    procedure btnCloseClick(Sender: TObject);
+    procedure btnCLoseClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -35,7 +35,7 @@ implementation
 
 {$R *.dfm}
 
-procedure TfrmLogIn.btnCloseClick(Sender: TObject);
+procedure TfrmLogIn.btnCLoseClick(Sender: TObject);
 begin
   if Assigned(frmDiary) then
   begin
@@ -46,16 +46,27 @@ begin
   begin
     dbmodule.DisposeOf;
   end;
-
-  close;
 end;
 
-  procedure TfrmLogIn.btnLoginClick(Sender: TObject);
+procedure TfrmLogIn.btnLoginClick(Sender: TObject);
   begin
     try
       if (edtUsername.Text <> '') AND (edtPassword.Text <> '') then
       begin
-        dbmodule := Tdbmodule.Create(Self);
+        {if Assigned(frmDiary) then
+        begin
+          frmDiary.DisposeOf;
+        end;
+
+        if Assigned(dbmodule) then
+        begin
+          dbmodule.DisposeOf;
+        end;}
+
+        if not Assigned(dbmodule) then
+        begin
+          dbmodule := Tdbmodule.Create(Self);
+        end;
 
         // Set UserId on log in
         dbmodule.SetUserId(edtUsername.Text, edtPassword.Text);

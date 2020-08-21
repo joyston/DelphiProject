@@ -1,0 +1,105 @@
+object frmLogIn: TfrmLogIn
+  Left = 327
+  Top = 148
+  BorderIcons = []
+  Caption = 'Log In'
+  ClientHeight = 459
+  ClientWidth = 714
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesigned
+  WindowState = wsMaximized
+  PixelsPerInch = 96
+  TextHeight = 13
+  object pnlLogin: TPanel
+    Left = 24
+    Top = 32
+    Width = 673
+    Height = 401
+    Margins.Left = 0
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 0
+    Align = alCustom
+    TabOrder = 0
+    object lblPassword: TLabel
+      Left = 368
+      Top = 137
+      Width = 60
+      Height = 17
+      Caption = 'PASSWORD'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Impact'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblUsername: TLabel
+      Left = 88
+      Top = 137
+      Width = 54
+      Height = 17
+      Caption = 'USERNAME'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Impact'
+      Font.Style = []
+      ParentFont = False
+    end
+    object btnLogin: TButton
+      Left = 368
+      Top = 237
+      Width = 201
+      Height = 47
+      Caption = 'LOGIN'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Impact'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 2
+      OnClick = btnLoginClick
+    end
+    object edtPassword: TMaskEdit
+      Left = 368
+      Top = 160
+      Width = 201
+      Height = 21
+      PasswordChar = '*'
+      TabOrder = 1
+      Text = 'joy'
+    end
+    object edtUsername: TEdit
+      Left = 88
+      Top = 160
+      Width = 193
+      Height = 21
+      TabOrder = 0
+      Text = 'Joy'
+    end
+    object btnCLose: TBitBtn
+      Left = 88
+      Top = 236
+      Width = 201
+      Height = 48
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Impact'
+      Font.Style = []
+      Kind = bkClose
+      NumGlyphs = 2
+      ParentFont = False
+      TabOrder = 3
+      OnClick = btnCLoseClick
+    end
+  end
+end
